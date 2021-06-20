@@ -1,0 +1,17 @@
+{
+  "name": "swapjs",
+  "description": "SWAP utility libraries",
+  "version": "0.0.1",
+  "main": "./build/index.js",
+  "scripts": {
+    "build": "yarn clear && tsc",
+    "watch": "yarn clear && tsc --watch",
+    "clear": "rimraf ./build",
+    "test": "mocha ./src/**/__tests__/*.js --ignore node_modules"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "mocha": "^9.0.1",
+    "rimraf": "^3.0.2"
+  }
+}
