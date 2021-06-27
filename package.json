@@ -1,5 +1,5 @@
 {
-  "name": "swapjs",
+  "name": "@yosgo/swapjs",
   "description": "SWAP utility libraries",
   "version": "0.0.1",
   "main": "./build/index.js",
