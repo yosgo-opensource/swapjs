@@ -4,6 +4,7 @@
   "description": "SWAP utility libraries",
   "version": "0.0.1",
   "main": "./build/index.js",
+  "types": "./index.d.ts",
   "repository": "yosgo-open-source/swapjs",
   "files": [
     "build"
