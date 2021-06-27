@@ -15,10 +15,12 @@
     "watch": "yarn clear && tsc --watch",
     "clear": "rimraf ./build",
     "test": "mocha ./src/**/__tests__/*.js --ignore node_modules",
-    "doc": "typedoc"
+    "docs": "typedoc src/index.ts",
+    "doc-deploy": "yarn docs && gh-pages --dist docs --no-history --message \"Deploy documentation\""
   },
   "license": "MIT",
   "devDependencies": {
+    "gh-pages": "^3.2.3",
     "mocha": "^9.0.1",
     "rimraf": "^3.0.2",
     "typedoc": "^0.21.2",
