@@ -2,6 +2,34 @@
 
 #### SWAP utility libraries
 
+[SWAP. Freelancer's online tax manager.](https://swap.work/)
+
+## Documentation
+
+[@yosgo/swapjs docs](https://yosgo-open-source.github.io/swapjs/)
+
+## Install
+
+```
+> yarn add @yosgo/swapjs
+```
+
+## How to create new Function
+
+example
+
+```
+- src
+  |- echo
+    |- __tests__
+      |- echo-test.js
+    |- index.ts
+```
+
+Test is important for the open-source, we add one test directory named `__tests__` with all utils implement file directory.
+
+All tests file didn't needed compiled by `typescript`, so just use `.js` extend name and then we ignore it from tsconfig.
+
 ## Commit Standard
 
 ```
