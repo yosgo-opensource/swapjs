@@ -2,9 +2,17 @@ type Code = '50' | '9A' | '9B'
 
 export function echo(msg: string): string
 
-export function taxAmtToAmt(code: Code, value: number): number
+export function convertTaxAmtToAmt(code: Code, value: number): number
 
-export function amtToTaxAmt(code: Code, value: number): number
+export function convertAmtToTaxAmt(code: Code, value: number): number
+
+export function calcBusinessTax(value: number): number
+
+export function calcSaleAmt(value: number): number
+
+export function calcSecondGenerationNHISupplementaryPremium(
+  value: number
+): number
 
 interface InvoiceInfo {
   InvoiceNumber: string
