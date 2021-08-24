@@ -10,6 +10,33 @@ afterEach(() => {
   IITCalculator = null
 })
 
+describe('default data', () => {
+  it('測試 default amount 正確性', () => {
+    const defaultAmount = IndividualIncomeTax.defaultAmount
+    assert.deepStrictEqual(defaultAmount, {
+      specialDeductionOfSalary: 200000,
+      professionalPractice9B: {
+        exemptionOf9B: 180000,
+        ratio: {
+          self: 0.75,
+          non_self: 0.3,
+        },
+      },
+      dependentsUnder70: 88000,
+      dependentsAbove70: 132000,
+      standardDeduction: 120000,
+      basicLivingExpense: 182000,
+      taxBrackets: {
+        level1: { amount: 0, rate: 0.05, progressiveDifference: 0 },
+        level2: { amount: 540001, rate: 0.12, progressiveDifference: 37800 },
+        level3: { amount: 1210001, rate: 0.2, progressiveDifference: 134600 },
+        level4: { amount: 2420001, rate: 0.3, progressiveDifference: 376600 },
+        level5: { amount: 4530001, rate: 0.4, progressiveDifference: 829600 },
+      },
+    })
+  })
+})
+
 describe('TEST CalcSpecialDeductionOfSalary', () => {
   it('薪資特別扣除額 不足20w', () => {
     const amount = IITCalculator.calcSpecialDeductionOfSalary(100000, 25000)

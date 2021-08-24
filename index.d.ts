@@ -43,29 +43,51 @@ export class InvoiceParser {
   month: Month
 }
 
-interface IndividualIncomeTaxProps {
-  CalcSpecialDeductionOfSalary: (
+interface DefaultAmout {
+  specialDeductionOfSalary: number
+  professionalPractice9B: {
+    exemptionOf9B: number
+    ratio: {
+      self: number
+      non_self: number
+    }
+  }
+  dependentsUnder70: number
+  dependentsAbove70: number
+  standardDeduction: number
+  basicLivingExpense: number
+  taxBrackets: {
+    level1: { amount: number; rate: number; progressiveDifference: number }
+    level2: { amount: number; rate: number; progressiveDifference: number }
+    level3: { amount: number; rate: number; progressiveDifference: number }
+    level4: { amount: number; rate: number; progressiveDifference: number }
+    level5: { amount: number; rate: number; progressiveDifference: number }
+  }
+}
+export class IndividualIncomeTax {
+  static defaultAmount: DefaultAmout
+  calcSpecialDeductionOfSalary: (
     salary: number,
     salaryFromPartTime: number
   ) => number
-  CalcProfessionalPractice9BTotal: (
+  calcProfessionalPractice9BTotal: (
     self: number,
     non_self: number
   ) => {
     exemptionOf9B: number
     total: number
   }
-  CalcExemption: (
+  calcExemption: (
     dependentsUnder70: number,
     dependentsAbove70: number
   ) => number
-  CalcStandardDeduction: (marriage: 'single' | 'married') => number
-  CalcBasicLivingExpenseDifference: (
+  calcStandardDeduction: (marriage: 'single' | 'married') => number
+  calcBasicLivingExpenseDifference: (
     dependentsUnder70: number,
     dependentsAbove70: number,
     marriage: 'single' | 'married'
   ) => number
-  CalcTotalIncomeTax: (
+  calcTotalIncomeTax: (
     marriage: 'single' | 'married',
     salary: number,
     salaryFromPartTime: number,
@@ -79,33 +101,10 @@ interface IndividualIncomeTaxProps {
     rate: number
     progressiveDifference: number
   }
-  CalcProfessionalPractice9ATotal: (amount: {
+  calcProfessionalPractice9ATotal: (amount: {
     [key: number]: {
       value: number
       expenseRatio: number
     }
   }) => number
-  default_amount: {
-    specialDeductionOfSalary: number
-    professionalPractice9B: {
-      exemptionOf9B: number
-      ratio: {
-        self: number
-        non_self: number
-      }
-    }
-    dependentsUnder70: number
-    dependentsAbove70: number
-    standardDeduction: number
-    basicLivingExpense: number
-    taxBrackets: {
-      level1: { amount: number; rate: number; progressiveDifference: number }
-      level2: { amount: number; rate: number; progressiveDifference: number }
-      level3: { amount: number; rate: number; progressiveDifference: number }
-      level4: { amount: number; rate: number; progressiveDifference: number }
-      level5: { amount: number; rate: number; progressiveDifference: number }
-    }
-  }
 }
-
-export const IndividualIncomeTax: IndividualIncomeTaxProps
