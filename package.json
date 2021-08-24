@@ -2,7 +2,7 @@
   "name": "@yosgo/swapjs",
   "private": false,
   "description": "SWAP utility libraries",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "main": "./build/index.js",
   "types": "./index.d.ts",
   "repository": "yosgo-open-source/swapjs",
