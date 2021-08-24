@@ -42,3 +42,70 @@ export class InvoiceParser {
   year: number
   month: Month
 }
+
+interface IndividualIncomeTaxProps {
+  CalcSpecialDeductionOfSalary: (
+    salary: number,
+    salaryFromPartTime: number
+  ) => number
+  CalcProfessionalPractice9BTotal: (
+    self: number,
+    non_self: number
+  ) => {
+    exemptionOf9B: number
+    total: number
+  }
+  CalcExemption: (
+    dependentsUnder70: number,
+    dependentsAbove70: number
+  ) => number
+  CalcStandardDeduction: (marriage: 'single' | 'married') => number
+  CalcBasicLivingExpenseDifference: (
+    dependentsUnder70: number,
+    dependentsAbove70: number,
+    marriage: 'single' | 'married'
+  ) => number
+  CalcTotalIncomeTax: (
+    marriage: 'single' | 'married',
+    salary: number,
+    salaryFromPartTime: number,
+    professionalPractice9ATotal: number,
+    professionalPractice9BTotal: number,
+    dependentsUnder70: number,
+    dependentsAbove70: number
+  ) => number
+  taxBrackets: (netAmount: number) => {
+    amount: number
+    rate: number
+    progressiveDifference: number
+  }
+  CalcProfessionalPractice9ATotal: (amount: {
+    [key: number]: {
+      value: number
+      expenseRatio: number
+    }
+  }) => number
+  default_amount: {
+    specialDeductionOfSalary: number
+    professionalPractice9B: {
+      exemptionOf9B: number
+      ratio: {
+        self: number
+        non_self: number
+      }
+    }
+    dependentsUnder70: number
+    dependentsAbove70: number
+    standardDeduction: number
+    basicLivingExpense: number
+    taxBrackets: {
+      level1: { amount: number; rate: number; progressiveDifference: number }
+      level2: { amount: number; rate: number; progressiveDifference: number }
+      level3: { amount: number; rate: number; progressiveDifference: number }
+      level4: { amount: number; rate: number; progressiveDifference: number }
+      level5: { amount: number; rate: number; progressiveDifference: number }
+    }
+  }
+}
+
+export const IndividualIncomeTax: IndividualIncomeTaxProps
