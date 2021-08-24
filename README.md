@@ -1,22 +1,30 @@
 # SWAPJS
 
-#### SWAP utility libraries
+當前由 SWAP Developer Team 維護，主要以 SWAP 計算相關通用函式集。
 
-[SWAP. Freelancer's online tax manager.](https://swap.work/)
+## ｜ SWAP 是什麼？
 
-## Documentation
+We are [SWAP. 自由工作者的財務管理平台](https://swap.work/)
+
+## ｜線上文件
 
 [@yosgo/swapjs docs](https://yosgo-open-source.github.io/swapjs/)
 
-## Install
+## ｜安裝
 
+`npm`
+
+```bash
+npm install @yosgo/swapjs
 ```
-> yarn add @yosgo/swapjs
+
+`yarn`
+
+```bash
+yarn add @yosgo/swapjs
 ```
 
-## How to create new Function
-
-example
+## ｜新增函式
 
 ```
 - src
@@ -26,20 +34,33 @@ example
     |- index.ts
 ```
 
-Test is important for the open-source, we add one test directory named `__tests__` with all utils implement file directory.
+每個函式都需要有一個 `__tests__` 資料夾，放置上層的函式測試內容，測試檔案不需要被 `typescript` 編譯，所以直接命名為 `.js` 即可。
 
-All tests file didn't needed compiled by `typescript`, so just use `.js` extend name and then we ignore it from tsconfig.
+## ｜交付標準
 
-## Commit Standard
+此交付標準格式源自於 [Angular Commit Message Guidelines](https://gist.github.com/brianclements/841ea7bffdb01346392c#file-commit-formatting-md)
 
 ```
-[feat]: 新增/修改功能 (feature)。
-[fix]: 修補 bug (bug fix)。
-[docs]: 文件 (documentation)。
-[style]: 格式 (不影響程式碼運行的變動 white-space, formatting, missing semi colons, etc)。
-[refactor]: 重構 (既不是新增功能，也不是修補 bug 的程式碼變動)。
-[perf]: 改善效能 (A code change that improves performance)。
-[test]: 增加測試 (when adding missing tests)。
-[chore]: 建構程序或輔助工具的變動 (maintain)。
-[revert]: 撤銷回覆先前的 commit 例如：revert: type(scope): subject (回覆版本：xxxx)。
+build: Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm)
+ci: Changes to our CI configuration files and scripts (example scopes: Circle, BrowserStack, SauceLabs)
+docs: Documentation only changes
+feat: A new feature
+fix: A bug fix
+perf: A code change that improves performance
+refactor: A code change that neither fixes a bug nor adds a feature
+style: Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)
+test: Adding missing tests or correcting existing tests
 ```
+
+`example`
+
+```
+fix(tax-amount): 修正稅務計算錯誤問題
+
+發現 50 的 tax 函式計算錯誤，調整為正確公式。
+```
+
+## ｜核心開發者
+
+[@Whien](https://github.com/madeinfree)
+[@Logan](https://github.com/clothe09986)
