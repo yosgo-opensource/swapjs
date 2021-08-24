@@ -3,61 +3,18 @@
  *
  * 110.8更新
  */
-
-interface DefaultAmout {
-  specialDeductionOfSalary: number
-  professionalPractice9B: {
-    exemptionOf9B: number
-    ratio: {
-      self: number
-      non_self: number
-    }
-  }
-  dependentsUnder70: number
-  dependentsAbove70: number
-  standardDeduction: number
-  basicLivingExpense: number
-  taxBrackets: {
-    level1: { amount: number; rate: number; progressiveDifference: number }
-    level2: { amount: number; rate: number; progressiveDifference: number }
-    level3: { amount: number; rate: number; progressiveDifference: number }
-    level4: { amount: number; rate: number; progressiveDifference: number }
-    level5: { amount: number; rate: number; progressiveDifference: number }
-  }
-}
+import type { DefaultAmout } from '../../index'
 export class IndividualIncomeTax {
-  private defaultAmount: DefaultAmout
-  constructor() {
-    this.defaultAmount = {
-      specialDeductionOfSalary: 200000,
-      professionalPractice9B: {
-        exemptionOf9B: 180000,
-        ratio: {
-          self: 0.75,
-          non_self: 0.3,
-        },
-      },
-      dependentsUnder70: 88000,
-      dependentsAbove70: 132000,
-      standardDeduction: 120000,
-      basicLivingExpense: 182000,
-      taxBrackets: {
-        level1: { amount: 0, rate: 0.05, progressiveDifference: 0 },
-        level2: { amount: 540001, rate: 0.12, progressiveDifference: 37800 },
-        level3: { amount: 1210001, rate: 0.2, progressiveDifference: 134600 },
-        level4: { amount: 2420001, rate: 0.3, progressiveDifference: 376600 },
-        level5: { amount: 4530001, rate: 0.4, progressiveDifference: 829600 },
-      },
-    }
-  }
+  static defaultAmount: DefaultAmout
+  constructor() {}
 
   calcSpecialDeductionOfSalary(salary: number, salaryFromPartTime: number) {
     let amount = 0
     if (
       salary + salaryFromPartTime >=
-      this.defaultAmount.specialDeductionOfSalary
+      IndividualIncomeTax.defaultAmount.specialDeductionOfSalary
     ) {
-      amount = this.defaultAmount.specialDeductionOfSalary
+      amount = IndividualIncomeTax.defaultAmount.specialDeductionOfSalary
     } else {
       amount = salary + salaryFromPartTime
     }
@@ -66,14 +23,15 @@ export class IndividualIncomeTax {
 
   calcExemption(dependentsUnder70: number, dependentsAbove70: number) {
     return (
-      dependentsUnder70 * this.defaultAmount.dependentsUnder70 +
-      dependentsAbove70 * this.defaultAmount.dependentsAbove70
+      dependentsUnder70 * IndividualIncomeTax.defaultAmount.dependentsUnder70 +
+      dependentsAbove70 * IndividualIncomeTax.defaultAmount.dependentsAbove70
     )
   }
 
   calcStandardDeduction(marriage: 'single' | 'married') {
     return (
-      this.defaultAmount.standardDeduction * (marriage === 'single' ? 1 : 2)
+      IndividualIncomeTax.defaultAmount.standardDeduction *
+      (marriage === 'single' ? 1 : 2)
     )
   }
 
@@ -84,7 +42,7 @@ export class IndividualIncomeTax {
   ) {
     let amount = 0
     const basicLivingExpense =
-      this.defaultAmount.basicLivingExpense *
+      IndividualIncomeTax.defaultAmount.basicLivingExpense *
       (dependentsUnder70 + dependentsAbove70)
     const StandardDeductionPlusExemption =
       this.calcStandardDeduction(marriage) +
@@ -111,10 +69,12 @@ export class IndividualIncomeTax {
   calcProfessionalPractice9BTotal(self: number, non_self: number) {
     let exemptionOf9B = 0,
       total = 0
-    const exem = this.defaultAmount.professionalPractice9B.exemptionOf9B
-    const self_ratio = this.defaultAmount.professionalPractice9B.ratio.self
+    const exem =
+      IndividualIncomeTax.defaultAmount.professionalPractice9B.exemptionOf9B
+    const self_ratio =
+      IndividualIncomeTax.defaultAmount.professionalPractice9B.ratio.self
     const non_self_ratio =
-      this.defaultAmount.professionalPractice9B.ratio.non_self
+      IndividualIncomeTax.defaultAmount.professionalPractice9B.ratio.non_self
 
     if (non_self >= exem) {
       exemptionOf9B = exem
@@ -139,7 +99,7 @@ export class IndividualIncomeTax {
       rate: 0,
       progressiveDifference: 0,
     }
-    const d = this.defaultAmount.taxBrackets
+    const d = IndividualIncomeTax.defaultAmount.taxBrackets
     switch (true) {
       case netAmount >= d.level1.amount && netAmount < d.level2.amount:
         return (level = d.level1)
@@ -185,8 +145,26 @@ export class IndividualIncomeTax {
       Math.round(netAmount * level.rate) - level.progressiveDifference
     return total < 0 ? 0 : total
   }
+}
 
-  getDefaultAmount() {
-    return this.defaultAmount
-  }
+IndividualIncomeTax.defaultAmount = {
+  specialDeductionOfSalary: 200000,
+  professionalPractice9B: {
+    exemptionOf9B: 180000,
+    ratio: {
+      self: 0.75,
+      non_self: 0.3,
+    },
+  },
+  dependentsUnder70: 88000,
+  dependentsAbove70: 132000,
+  standardDeduction: 120000,
+  basicLivingExpense: 182000,
+  taxBrackets: {
+    level1: { amount: 0, rate: 0.05, progressiveDifference: 0 },
+    level2: { amount: 540001, rate: 0.12, progressiveDifference: 37800 },
+    level3: { amount: 1210001, rate: 0.2, progressiveDifference: 134600 },
+    level4: { amount: 2420001, rate: 0.3, progressiveDifference: 376600 },
+    level5: { amount: 4530001, rate: 0.4, progressiveDifference: 829600 },
+  },
 }
