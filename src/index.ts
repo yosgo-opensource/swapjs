@@ -6,4 +6,5 @@ export {
   calcSaleAmt,
   calcSecondGenerationNHISupplementaryPremium,
 } from './TaxCalc'
+export { IndividualIncomeTax } from './IndividualIncomeTax'
 export { InvoiceParser } from './Invoice'
