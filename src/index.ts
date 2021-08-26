@@ -8,3 +8,4 @@ export {
 } from './TaxCalc'
 export { IndividualIncomeTax } from './IndividualIncomeTax'
 export { InvoiceParser } from './Invoice'
+export { taxid as validateTaxid } from './validate/taxid'

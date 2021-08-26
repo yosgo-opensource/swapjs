@@ -14,6 +14,12 @@ export function calcSecondGenerationNHISupplementaryPremium(
   value: number
 ): number
 
+interface TaxIdResult {
+  error: boolean
+  code: number
+}
+export function validateTaxid(taxId: string): TaxIdResult
+
 interface InvoiceInfo {
   InvoiceNumber: string
   CreateTime: string
