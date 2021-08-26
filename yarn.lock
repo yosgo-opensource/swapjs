@@ -7,6 +7,11 @@
   resolved "https://registry.yarnpkg.com/@ungap/promise-all-settled/-/promise-all-settled-1.1.2.tgz#aa58042711d6e3275dd37dc597e5d31e8c290a44"
   integrity sha512-sL/cEvJWAnClXw0wHk85/2L0G6Sj8UB0Ctc1TEMbKSsmpRosqhwj9gWgFRZSrBr2f9tiXISwNhCPmlfqUqyb9Q==
 
+"@yosgo/tsconfig@^0.0.3":
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/@yosgo/tsconfig/-/tsconfig-0.0.3.tgz#59ec99839b6dca3d267e581a68c93fee4c04398c"
+  integrity sha512-O/VjpckFAMCDG7j79/CnjBuur8FAuVHp6+q1C0gFhoreV+hWlWzap8Q5fPmnsEyaXwqtcgikrQ1z2+31g4aNJA==
+
 ansi-colors@4.1.1:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/ansi-colors/-/ansi-colors-4.1.1.tgz#cbb9ae256bf750af1eab344f229aa27fe94ba348"
