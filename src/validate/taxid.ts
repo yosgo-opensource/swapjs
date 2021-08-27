@@ -1,6 +1,10 @@
 import { getDoubleDigitSum } from '../utils/getDoubleDigitSum'
+import type { TaxIdResult } from '../../index'
 
-export const taxid = (taxId: string) => {
+/**
+ * @param taxId - company tax ID
+ */
+export const taxid = (taxId: string): TaxIdResult => {
   const cx = new Array()
   cx[0] = 1
   cx[1] = 2

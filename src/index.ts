@@ -9,3 +9,5 @@ export {
 export { IndividualIncomeTax } from './IndividualIncomeTax'
 export { InvoiceParser } from './Invoice'
 export { taxid as validateTaxid } from './validate/taxid'
+
+export type { TaxIdResult, DefaultAmout } from '../index'
