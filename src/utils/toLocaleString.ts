@@ -1,7 +1,7 @@
 /**
  * transer number value to locale string
  * @param value - use in price
- * @param like - maybe string can tranfer to number
+ * @param maybe - maybe string can tranfer to number
  * @returns
  */
 export const toLocaleString = (
