@@ -31,3 +31,8 @@ export type { TaxIdResult, validateTaxid } from './types/valid'
  * Convert
  */
 export type { convertAmtToTaxAmt, convertTaxAmtToAmt } from './types/convert'
+
+/**
+ * Utils
+ */
+export type { toLocaleString, getDoubleDigitSum } from './types/utils'
