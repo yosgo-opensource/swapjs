@@ -8,6 +8,7 @@
   "repository": "yosgo-open-source/swapjs",
   "files": [
     "build",
+    "types",
     "index.d.ts"
   ],
   "scripts": {
