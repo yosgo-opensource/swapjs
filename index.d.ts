@@ -11,13 +11,12 @@ export type { Month, Code } from './types/common'
 /**
  * Tax
  */
+export type { IndividualIncomeTax, IndividualWithdrawIncomeTax }
 export type {
   SYMBOL_NINEA,
   SYMBOL_NINEB,
   SYMBOL_FIFTY,
   DefaultAmout,
-  IndividualIncomeTax,
-  IndividualWithdrawIncomeTax,
   IndividualWithdrawIncomeTaxOptions,
 } from './types/tax'
 
