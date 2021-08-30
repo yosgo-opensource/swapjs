@@ -1,7 +1,12 @@
 /**
  * Sample
  */
-export type { echo } from './types/sample'
+export { echo } from './types/sample'
+
+/**
+ * Common
+ */
+export type { Month, Code } from './types/common'
 
 /**
  * Tax
@@ -19,7 +24,7 @@ export type {
 /**
  * Calc
  */
-export type {
+export {
   calcSaleAmt,
   calcBusinessTax,
   calcSecondGenerationNHISupplementaryPremium,
@@ -33,14 +38,15 @@ export type { InvoiceInfo, InvoiceParser } from './types/invoice'
 /**
  * Valid
  */
-export type { TaxIdResult, validateTaxid } from './types/valid'
+export type { TaxIdResult } from './types/valid'
+export { validateTaxid } from './types/valid'
 
 /**
  * Convert
  */
-export type { convertAmtToTaxAmt, convertTaxAmtToAmt } from './types/convert'
+export { convertAmtToTaxAmt, convertTaxAmtToAmt } from './types/convert'
 
 /**
  * Utils
  */
-export type { toLocaleString, getDoubleDigitSum } from './types/utils'
+export { toLocaleString, getDoubleDigitSum } from './types/utils'
