@@ -1,6 +1,7 @@
 {
   "extends": "@yosgo/tsconfig/npm/tsconfig.json",
   "compilerOptions": {
+    "target": "ES2019",
     "outDir": "./build",
   },
   "include": ["./src/**/*.ts"],

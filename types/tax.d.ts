@@ -67,3 +67,39 @@ export class IndividualIncomeTax {
     }
   }) => number
 }
+
+/**
+ * Individual Tax Code
+ * In taiwan freelancer tax code have the three different type `50`, `9A` and `9B`
+ */
+export type IndividualTaxCode = '9A' | '9B' | '50'
+export interface IndividualWithdrawIncomeTaxOptions {
+  year: number
+  code: IndividualTaxCode | SYMBOL_FIFTY | SYMBOL_NINEA | SYMBOL_NINEB
+  value: number
+}
+
+/**
+ * 50 Symbol
+ */
+export type SYMBOL_FIFTY = Symbol
+/**
+ * 9A Symbol
+ */
+export type SYMBOL_NINEA = Symbol
+/**
+ * 9B Symbol
+ */
+export type SYMBOL_NINEB = Symbol
+/**
+ * withdraw income tax calculate
+ */
+export class IndividualWithdrawIncomeTax {
+  public year: number
+  public code: IndividualTaxCode | SYMBOL_FIFTY | SYMBOL_NINEA | SYMBOL_NINEB
+  public value: number
+  constructor(options: IndividualWithdrawIncomeTaxOptions)
+  inComeCalculate(): number
+  secondGenerationCalculate(): number
+  payTaxWithdrawTotal(): number
+}

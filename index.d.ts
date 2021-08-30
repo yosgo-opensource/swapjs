@@ -6,7 +6,15 @@ export type { echo } from './types/sample'
 /**
  * Tax
  */
-export type { DefaultAmout, IndividualIncomeTax } from './types/tax'
+export type {
+  SYMBOL_NINEA,
+  SYMBOL_NINEB,
+  SYMBOL_FIFTY,
+  DefaultAmout,
+  IndividualIncomeTax,
+  IndividualWithdrawIncomeTax,
+  IndividualWithdrawIncomeTaxOptions,
+} from './types/tax'
 
 /**
  * Calc
