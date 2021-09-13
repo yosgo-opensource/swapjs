@@ -5,6 +5,8 @@ export {
   calcBusinessTax,
   calcSaleAmt,
   calcSecondGenerationNHISupplementaryPremium,
+  taxAnd2ndNHIExcludedToTaxedAmount,
+  taxedAmountToTaxAnd2ndNHIExcluded,
 } from './TaxCalc'
 export { IndividualIncomeTax } from './IndividualIncomeTax'
 export { IndividualWithdrawIncomeTax } from './IndividualWithdrawIncomeTax'

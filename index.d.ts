@@ -43,7 +43,12 @@ export { validateTaxid } from './types/valid'
 /**
  * Convert
  */
-export { convertAmtToTaxAmt, convertTaxAmtToAmt } from './types/convert'
+export {
+  convertAmtToTaxAmt,
+  convertTaxAmtToAmt,
+  taxAnd2ndNHIExcludedToTaxedAmount,
+  taxedAmountToTaxAnd2ndNHIExcluded,
+} from './types/convert'
 
 /**
  * Utils
