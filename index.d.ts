@@ -32,7 +32,8 @@ export {
 /**
  * Invoice
  */
-export type { InvoiceInfo, InvoiceParser } from './types/invoice'
+export { InvoiceParser } from './types/invoice'
+export type { InvoiceInfo } from './types/invoice'
 
 /**
  * Valid
