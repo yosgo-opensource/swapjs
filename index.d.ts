@@ -54,4 +54,4 @@ export {
 /**
  * Utils
  */
-export { toLocaleString, getDoubleDigitSum } from './types/utils'
+export { toLocaleString, getDoubleDigitSum, b64toBlob } from './types/utils'

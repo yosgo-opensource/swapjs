@@ -15,6 +15,7 @@ export { taxid as validateTaxid } from './validate/taxid'
 
 export { getDoubleDigitSum } from './utils/getDoubleDigitSum'
 export { toLocaleString } from './utils/toLocaleString'
+export { b64toBlob } from './utils/b64toBlob'
 
 export type {
   SYMBOL_NINEA,
