@@ -12,6 +12,7 @@ export { IndividualIncomeTax } from './IndividualIncomeTax'
 export { IndividualWithdrawIncomeTax } from './IndividualWithdrawIncomeTax'
 export { InvoiceParser } from './Invoice'
 export { taxid as validateTaxid } from './validate/taxid'
+export { email as validateEmail } from './validate/email'
 
 export { getDoubleDigitSum } from './utils/getDoubleDigitSum'
 export { toLocaleString } from './utils/toLocaleString'

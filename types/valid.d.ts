@@ -4,3 +4,4 @@ export interface TaxIdResult {
 }
 
 export function validateTaxid(taxId: string): TaxIdResult
+export function validateEmail(input: string): boolean

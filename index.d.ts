@@ -39,7 +39,7 @@ export type { InvoiceInfo } from './types/invoice'
  * Valid
  */
 export type { TaxIdResult } from './types/valid'
-export { validateTaxid } from './types/valid'
+export { validateTaxid, validateEmail } from './types/valid'
 
 /**
  * Convert
