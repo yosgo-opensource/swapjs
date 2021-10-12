@@ -63,12 +63,18 @@ export class InvoiceParser {
   }
 
   get year(): number {
-    return new Date(this._invoiceInfo.CreateTime as string).getFullYear() - 1911
+    return (
+      new Date(
+        this._invoiceInfo.CreateTime?.replace(/-/g, '/') as string
+      ).getFullYear() - 1911
+    )
   }
 
   get month(): Month {
     let monthLeft =
-      new Date(this._invoiceInfo.CreateTime as string).getMonth() + 1
+      new Date(
+        this._invoiceInfo.CreateTime?.replace(/-/g, '/') as string
+      ).getMonth() + 1
     let monthRight = monthLeft % 2 !== 0 ? monthLeft + 1 : monthLeft - 1
     if (monthLeft > monthRight) {
       const tmp = monthRight
