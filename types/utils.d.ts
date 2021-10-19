@@ -5,3 +5,4 @@ export function b64toBlob(
   contentType: string = '',
   sliceSize: number = 512
 ): Blob
+export function formatString(dataString: string): string

@@ -55,3 +55,8 @@ export {
  * Utils
  */
 export { toLocaleString, getDoubleDigitSum, b64toBlob } from './types/utils'
+
+/**
+ * idCard
+ */
+export { parseIdCard, parseImageType } from './types/ocr'

@@ -14,9 +14,12 @@ export { InvoiceParser } from './Invoice'
 export { taxid as validateTaxid } from './validate/taxid'
 export { email as validateEmail } from './validate/email'
 
+export { parseIdCard } from './ParseOcrString/parseIdCard'
+export { parseImageType } from './ParseOcrString/parseImageType'
 export { getDoubleDigitSum } from './utils/getDoubleDigitSum'
 export { toLocaleString } from './utils/toLocaleString'
 export { b64toBlob } from './utils/b64toBlob'
+export { formatString } from './utils/formatString'
 
 export type {
   SYMBOL_NINEA,
