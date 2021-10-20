@@ -13,7 +13,7 @@ describe('TEST image type parsing. ', () => {
 
   it('Should return back.', () => {
     const string =
-      '父張天賜母陳玉蒸父配偶吳家变役别常兵備役出生地臺灣省彪化縣住址台北市內湖區東林里新湖二路429年8樓1493938505'
+      '父陳德明母與春美配偶金大异役割出生地臺北市住址臺北市內湖區新湖业部世1民權東路六段283巷15弄2180000133805'
     const type = parseImageType(string)
     assert.strictEqual(type, 'id_back')
   })
