@@ -17,4 +17,9 @@ describe('TEST image type parsing. ', () => {
     const type = parseImageType(string)
     assert.strictEqual(type, 'id_back')
   })
+  it('Should return null.', () => {
+    const string = '父陳德明父陳德明父陳德明父陳德明父陳德明2180000133805'
+    const type = parseImageType(string)
+    assert.strictEqual(type, null)
+  })
 })

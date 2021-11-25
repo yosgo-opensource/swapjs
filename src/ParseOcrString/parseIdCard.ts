@@ -15,11 +15,14 @@ export const parseIdCard = (
   // address = the string between '住址' and the 10 consecutive serial number
 
   if (idCardOrientation === 'front') {
+    const stringWithOnlyChineseLetters = dataString.replace(
+      /([[\]&\-=/\\!^#,+()$~%.'":*?<>{}_;]|[A-Za-z0-9])|@/g,
+      ''
+    )
     // List of possible 2-character keywords that could appear in the ocr string
     // Use the list of keywords that are actually in the string to determine where the Name ends
     // Keywords with 2 or more characters preferred, to prevent the situation where the name actually includes the keyword from happening
     // Generally ocr reads from top to bottom, left to right, so the keywords '中華民國身分證' and '姓名' can be ignored
-
     const keyWords = [
       '出生',
       '性別',
@@ -55,24 +58,34 @@ export const parseIdCard = (
     // Then use this array to find the smallest index, to determine where the Name ends
     const indexOfExistingKeywords = keyWords.reduce(
       (accumulator: number[], currentValue: string) => {
-        if (dataString.includes(currentValue)) {
-          accumulator.push(dataString.indexOf(currentValue))
+        if (stringWithOnlyChineseLetters.includes(currentValue)) {
+          accumulator.push(stringWithOnlyChineseLetters.indexOf(currentValue))
         }
         return accumulator
       },
       []
     )
 
-    const indexOfNameStart = dataString.indexOf('姓名') + '姓名'.length
+    // const indexOfNameStart = dataString.indexOf('姓名') + '姓名'.length
+    const indexOfNameStart = (string: string) => {
+      if (string.includes('姓名')) {
+        return string.indexOf('姓名') + '姓名'.length
+      } else if (string.includes('姓')) {
+        return string.indexOf('姓') + '姓X'.length
+      } else if (string.includes('名')) {
+        return string.indexOf('名') + '名'.length
+      } else {
+        return -1
+      }
+    }
     const indexOfNameEnd = Math.min(...indexOfExistingKeywords)
     const indexOfIdStart = dataString.search(/\d{9}/) - 1 // 9 consecutive numbers + 1 English character before it
     const indexOfIdEnd = indexOfIdStart + 10
     const isEnglishLetter = /^[A-Z]*$/
 
-    const rawName = dataString.slice(indexOfNameStart, indexOfNameEnd)
-    const name = rawName.replace(
-      /([[\]&\-=/\\!^#,+()$~%.'":*?<>{}_;]|[A-Za-z0-9])|@/g,
-      ''
+    const name = stringWithOnlyChineseLetters.slice(
+      indexOfNameStart(stringWithOnlyChineseLetters),
+      indexOfNameEnd
     )
     const id = dataString.slice(indexOfIdStart, indexOfIdEnd)
 
@@ -90,10 +103,25 @@ export const parseIdCard = (
   }
 
   if (idCardOrientation === 'back') {
-    const indexOfAddressStart = dataString.indexOf('住址') + '住址'.length
-    const indexOfAddressEnd = dataString.search(/\d{10}/)
+    const addressWithoutAlphabets = dataString.replace(
+      /([[\]&\-=/\\!^#,+()$~%.'":*?<>{}_;]|[A-Za-z])|@/g,
+      ''
+    )
+    const indexOfAddressStart = (string: string) => {
+      if (string.includes('住址')) {
+        return string.indexOf('住址') + '住址'.length
+      } else if (string.includes('住')) {
+      } else {
+        return -1
+      }
+    }
+    const indexOfAddressEnd = addressWithoutAlphabets.search(/\d{10}/)
 
-    const address = dataString.slice(indexOfAddressStart, indexOfAddressEnd)
+    const address = addressWithoutAlphabets.slice(
+      indexOfAddressStart(addressWithoutAlphabets),
+      indexOfAddressEnd
+    )
+
     const addressIsValid = address !== ''
     const result = {
       id: '',
