@@ -40,6 +40,8 @@ export const parseIdCard = (
       '月日',
       '日期',
       '日民國',
+      '出年',
+      '生日',
       '月日民國',
       '出生民國',
       '生民國',
@@ -83,10 +85,13 @@ export const parseIdCard = (
     const indexOfIdEnd = indexOfIdStart + 10
     const isEnglishLetter = /^[A-Z]*$/
 
-    const name = stringWithOnlyChineseLetters.slice(
+    const _name = stringWithOnlyChineseLetters.slice(
       indexOfNameStart(stringWithOnlyChineseLetters),
       indexOfNameEnd
     )
+
+    const name = removeNonNameString(_name)
+
     const id = dataString.slice(indexOfIdStart, indexOfIdEnd)
 
     const nameAndIdAreValid =
@@ -104,7 +109,7 @@ export const parseIdCard = (
 
   if (idCardOrientation === 'back') {
     const addressWithoutAlphabets = dataString.replace(
-      /([[\]&\-=/\\!^#,+()$~%.'":*?<>{}_;]|[A-Za-z])|@/g,
+      /([[\]&\-=/\\!^#,+()$~%.'":*?<>{}_;|。！＠＃＄％＾＆＊（）＿＋『』，？：、“”「」＝｜]|[A-Za-z])|@/g,
       ''
     )
     const indexOfAddressStart = (string: string) => {
@@ -122,14 +127,44 @@ export const parseIdCard = (
       indexOfAddressEnd
     )
 
-    const addressIsValid = address !== ''
+    const addressWithoutLastNumbers =
+      checkAndRemoveIfLastIsNumberString(address)
+
+    const addressIsValid = addressWithoutLastNumbers !== ''
     const result = {
       id: '',
       name: '',
-      address: address,
+      address: addressWithoutLastNumbers,
     }
     if (addressIsValid) {
       return result
     }
   }
+}
+
+// In general, the address on ID cards in Taiwan(ROC) should not be ending with numbers => remove all ending numbers
+const checkAndRemoveIfLastIsNumberString = (
+  string: string
+): string | Function => {
+  if (isNaN(Number(string[string.length - 1]))) {
+    return string
+  } else {
+    const removed = string.substring(0, string.length - 1)
+    return checkAndRemoveIfLastIsNumberString(removed)
+  }
+}
+
+// Remove listed keywords from name, just in case
+const removeNonNameString = (string: string) => {
+  const keywordList = ['中華', '民國']
+  let cleanString = string
+  for (let i = 0; i < keywordList.length; ) {
+    if (cleanString.includes(keywordList[i])) {
+      cleanString = cleanString.replace(keywordList[i], '')
+    } else {
+      i++
+    }
+  }
+
+  return cleanString
 }

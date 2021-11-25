@@ -50,6 +50,18 @@ describe('TEST parse id card info', () => {
     }
     assert.strictEqual(parsedId.name, result.name)
   })
+  it('Parse front id: name, has 民國 and 中華 behind name', () => {
+    const string =
+      '中華民國國民身分證TPER?性名陳鮭頭民國民國中華ANTAL出生民國68年3月12日年月日發證日期民國98年1月10日(北市)補發TA性別男統一的F123067888'
+    const parsedId = parseIdCard('front', string)
+
+    const result = {
+      address: '',
+      id: 'F123067888',
+      name: '陳鮭頭',
+    }
+    assert.strictEqual(parsedId.name, result.name)
+  })
   it('Parse front id: address', () => {
     const string =
       '中華民國國民身分證TPER?姓名陳鮭頭ANTAL出生民國68年3月12日年月日發證日期民國98年1月10日(北市)補發TA性別男統一的F123067888'
@@ -109,6 +121,19 @@ describe('TEST parse id card info', () => {
   it('Parse back id: address, with english letters and symbols', () => {
     const string =
       '父張天as賜母陳玉bruh蒸d父配偶a吳家**%*!*$%)^@$)!%变役d别常兵f備役f出生地臺灣ag省彪化縣a住址台北d市asdf內湖*&#^$%@$%@#$%&*區東f林里新湖二路d429年8樓1a49393f8505ffffffffffffffffffasdf'
+    const parsedId = parseIdCard('back', string)
+
+    const result = {
+      address: '台北市內湖區東林里新湖二路429年8樓',
+      id: '',
+      name: '',
+    }
+    assert.strictEqual(parsedId.address, result.address)
+  })
+
+  it('Parse back id: address, with numbers after address', () => {
+    const string =
+      '父張天as賜母陳玉bruh蒸d父配偶a吳家**%*!*$%)^@$)!%变役d别常兵f備役f出生地臺灣ag省彪化縣a住址台北d市asdf內湖*&#^$%@$%@#$%&*區東f林里新湖二路d429年8樓948329189|43211a49393f8505ffffffffffffffffffasdf'
     const parsedId = parseIdCard('back', string)
 
     const result = {
