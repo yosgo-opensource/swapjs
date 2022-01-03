@@ -7,15 +7,15 @@ const {
 const assert = require('assert')
 
 describe('TEST individual withdraw income tax', () => {
-  it('code => 50, value => less then 84,501, pay 0', () => {
+  it('code => 50, value => less then 86,001, pay 0', () => {
     const calculator = new IndividualWithdrawIncomeTax({
-      value: 84500,
+      value: 86000,
       code: FIFTY,
     })
     const incomeTax = calculator.inComeCalculate()
     assert.strictEqual(incomeTax, 0)
   })
-  it('code => 50, value => more then 84,501 and use `50` string, pay 4450', () => {
+  it('code => 50, value => more then 86,001 and use `50` string, pay 4450', () => {
     const calculator = new IndividualWithdrawIncomeTax({
       value: 89000,
       code: '50',
@@ -43,21 +43,21 @@ describe('TEST individual withdraw income tax', () => {
 })
 
 describe('TEST individual withdraw second generation healthy tax, pay 0', () => {
-  it('code => 50, value => less then 24,000', () => {
+  it('code => 50, value => less then 25,250', () => {
     const calculator = new IndividualWithdrawIncomeTax({
-      value: 23999,
+      value: 25249,
       code: FIFTY,
     })
     const secondGenerationHealthyTax = calculator.secondGenerationCalculate()
     assert.strictEqual(secondGenerationHealthyTax, 0)
   })
-  it('code => 50, value => less then 24,000, pay 506', () => {
+  it('code => 50, value => less then 25,250, pay 533', () => {
     const calculator = new IndividualWithdrawIncomeTax({
-      value: 24000,
+      value: 25251,
       code: '50',
     })
     const secondGenerationHealthyTax = calculator.secondGenerationCalculate()
-    assert.strictEqual(secondGenerationHealthyTax, 506)
+    assert.strictEqual(secondGenerationHealthyTax, 533)
   })
 
   it('code => 9A, value => less then 20,000, pay 0', () => {
@@ -87,7 +87,7 @@ describe('TEST withdraw total final calculate', () => {
     const withdrawPureTotal = calculator.payTaxWithdrawTotal()
     assert.strictEqual(withdrawPureTotal, 20000)
   })
-  it('code => 50, value => 23,750 tax => 0 second healthy => 501, final total 23,249', () => {
+  it('code => 50, value => 25,750 tax => 0 second healthy => 543, final total 25,207', () => {
     const calculator = new IndividualWithdrawIncomeTax({
       value: 25750,
       code: FIFTY,

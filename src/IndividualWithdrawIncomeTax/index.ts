@@ -2,7 +2,8 @@
  * In Taiwan, if you are freelancer you should pay the individual healthy tax.
  * Not the same tax pay every year, for the new year should check it again.
  * (2020)
- * (2021) <- NOW
+ * (2021)
+ * (2022) <- NOW
  */
 
 import {
@@ -26,29 +27,29 @@ export class IndividualWithdrawIncomeTax {
   }
   /**
    * individual tax calculate <br />
-   * (2021) code 50 - value more then 84,500, pay 5% tax <br/>
-   * (2021) code 9A, 9B - value more then 20,009, pay 10% tax
+   * (2022) code 50 - value more then 86,001, pay 5% tax <br/>
+   * (2022) code 9A, 9B - value more then 20,010, pay 10% tax
    */
   inComeCalculate(): number {
     if (this.code === FIFTY || this.code === '50') {
-      if (this.value < 84501) {
+      if (this.value < 86001) {
         return 0
       }
-      return Math.round(this.value * 0.05)
+      return Math.floor(this.value * 0.05)
     } else {
       if (this.value <= 20009) {
         return 0
       }
-      return Math.round(this.value * 0.1)
+      return Math.floor(this.value * 0.1)
     }
   }
   /**
-   * (2021) code 50 - value more then 24,000, pay 2.11% tax <br />
-   * (2021) code 9A, 9B - value more then 19,000, pay 2.11% tax <br />
+   * (2022) code 50 - value more then 25,250, pay 2.11% tax <br />
+   * (2022) code 9A, 9B - value more then 20,000, pay 2.11% tax <br />
    */
   secondGenerationCalculate(): number {
     if (this.code === FIFTY || this.code === '50') {
-      if (this.value <= 23999) {
+      if (this.value <= 25249) {
         return 0
       }
     } else {
