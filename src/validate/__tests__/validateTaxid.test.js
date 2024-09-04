@@ -31,7 +31,15 @@ describe('TEST incorrect and code', () => {
 
 describe('TEST correct code', () => {
   it('success and code 0', () => {
-    ;['52601428', '00000000'].map((id) => {
+    ;[
+      '52601428',
+      '00000000',
+      '04595257',
+      '10458575',
+      '04595252',
+      '10458574',
+      '00523989',
+    ].map((id) => {
       const result = taxid(id)
       assert.deepStrictEqual(result, success.code0)
     })
