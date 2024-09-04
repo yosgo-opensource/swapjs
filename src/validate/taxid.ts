@@ -34,7 +34,7 @@ export const taxid = (taxId: string): TaxIdResult => {
       sum += Number(getDoubleDigitSum(String(Number(cnum[i]) * cx[i])))
     }
 
-    if (sum % 10 == 0 || (cnum[6] == '7' && (sum + 1) % 10 == 0)) {
+    if (sum % 5 == 0 || (cnum[6] == '7' && (sum + 1) % 5 == 0)) {
       return {
         error: false,
         code: 0,
